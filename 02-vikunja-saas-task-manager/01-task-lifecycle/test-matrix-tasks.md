@@ -29,4 +29,4 @@
 
 | Defect ID | Associated Test ID | Summary | Severity |
 |:---|:---:|:---|:---:|
-|**[BUG-001](../01-task-lifecycle/bug-reports/BUG-001-Link_Enter_Deletes_Text)**| TC-TASK-10 | Link text disappears after pressing enter to confirm the link. Error only occurs on WebKit browsers. | Major | 
+|**[BUG-001](./bug-reports/BUG-001-Link_Enter_Deletes_Text.md)**| TC-TASK-10 | Link text disappears after pressing enter to confirm the link. Error only occurs on WebKit browsers. | Major | 
