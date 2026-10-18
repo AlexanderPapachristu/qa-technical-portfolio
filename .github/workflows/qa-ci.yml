@@ -19,3 +19,28 @@ jobs:
         with:
           use-quiet-mode: 'yes'
           check-modified-files-only: 'no'
+
+  api-regression-tests:
+    name: Run Automated API Tests (Newman)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install Newman
+        run: npm install -g newman
+
+      - name: Execute Postman Collection
+        # This will execute any exported collection stored in your repo
+        # Example path: 02-vikunja-saas/api-artifacts/vikunja-api-tests.json
+        run: |
+          if [ -d "./api-tests" ]; then
+            newman run ./api-tests/*.json
+          else
+            echo "No exported Postman collection found yet. Skipping API runner."
+          fi
