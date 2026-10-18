@@ -1,0 +1,1 @@
+![QA Portfolio CI](https://github.com/AlexanderPapachristu/qa-technical-portfolio/actions/workflows/qa-ci.yml/badge.svg)
