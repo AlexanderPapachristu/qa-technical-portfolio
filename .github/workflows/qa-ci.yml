@@ -36,11 +36,10 @@ jobs:
         run: npm install -g newman
 
       - name: Execute Postman Collection
-        # This will execute any exported collection stored in your repo
-        # Example path: 02-vikunja-saas/api-artifacts/vikunja-api-tests.json
+        # This will execute any exported collection stored in the repo
         run: |
-          if [ -d "./api-tests" ]; then
-            newman run ./api-tests/*.json
+          if [ -d "./api-artifacts" ]; then
+            newman run ./api-artifacts/vikunja-api-tests.json
           else
             echo "No exported Postman collection found yet. Skipping API runner."
           fi
