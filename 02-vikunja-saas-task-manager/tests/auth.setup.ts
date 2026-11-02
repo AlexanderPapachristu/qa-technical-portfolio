@@ -7,7 +7,7 @@ setup('setup', async ({ page }) => {
     await page.goto('https://try.vikunja.io/login');
 
     // Fill credentials
-    helper.login(page);
+    await helper.login(page);
 
     const taskInput = page.getByRole('textbox', { name: 'Add a task…' });
     await expect(taskInput).toBeVisible();

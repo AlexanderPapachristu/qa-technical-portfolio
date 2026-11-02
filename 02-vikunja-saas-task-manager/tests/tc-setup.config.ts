@@ -7,6 +7,7 @@ export default defineConfig({
 
     {
       name: 'chromium',
+      testIgnore: /tc-rbac-.*\.spec\.ts/,
       use: {
         ...devices['Desktop Chrome'],
         // Every test inherits the saved logged-in state
@@ -14,5 +15,8 @@ export default defineConfig({
       },
       dependencies: ['setup'],
     },
+    { name: 'rbac-chromium', testMatch: /tc-rbac-.*\.spec\.ts/, use: { ...devices['Desktop Chrome'] } },
+    { name: 'rbac-firefox',  testMatch: /tc-rbac-.*\.spec\.ts/, use: { ...devices['Desktop Firefox'] } },
+    { name: 'rbac-webkit',   testMatch: /tc-rbac-.*\.spec\.ts/, use: { ...devices['Desktop Safari'] } },
   ],
 });

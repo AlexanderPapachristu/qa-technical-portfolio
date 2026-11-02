@@ -66,3 +66,13 @@ To validate authorization boundaries, the execution environment requires four is
 | **TC-RBAC-29** | API Tokens | Scoped API token can't exceed it's scope | B: `User-Write` | `User-Write` creates an API token with only task read scope, then calls PUT /projects/{P}/tasks with it | `401 Unauthorized` or `403 Forbidden` . No task created. `User-Write`'s own Write access doesn't apply. | No | Untested |
 | **TC-RBAC-30** | Revocation | Downgrade from Write to Read takes effect immediately | B: `User-Write`, A: `User-Owner` | `User-Owner` runs POST /projects/{P}/users/{B's user id} with body {"permission":0}. `User-Write` tries to create a task	| `403 Forbidden` on `User-Write`'s next request. | No | Untested |
 
+await page.getByRole('link', { name: 'Projects' }).click();
+await page.getByRole('link', { name: 'New project' }).click();
+await page.getByRole('textbox', { name: 'Title' }).click();
+await page.getByRole('textbox', { name: 'Title' }).fill('Project-1');
+await page.getByRole('textbox', { name: 'Title' }).press('Tab');
+await page.getByRole('button', { name: 'Create' }).click();
+await page.getByRole('textbox', { name: 'Add a task…' }).fill('Test Task 1');
+await page.getByRole('button', { name: 'Add' }).click();
+await page.getByRole('textbox', { name: 'Add a task…' }).click();
+await page.getByRole('textbox', { name: 'Add a task…' }).fill('Test Task 3');

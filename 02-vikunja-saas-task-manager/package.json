@@ -3,13 +3,17 @@
   "version": "1.0.0",
   "description": "- **Application:** Vikunja  \r - **Environment:** https://try.vikunja.io/\r - **Browser:** Chrome",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "test:ui": "playwright test --project=rbac-chromium --project=rbac-firefox --project=rbac-webkit",
+    "test:tasks": "playwright test --project=chromium --project=firefox --project=webkit"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
     "@playwright/test": "^1.63.0",
-    "@types/node": "^26.6.4"
+    "@types/node": "^26.6.4",
+    "dotenv": "^16.4.5"
   }
 }
