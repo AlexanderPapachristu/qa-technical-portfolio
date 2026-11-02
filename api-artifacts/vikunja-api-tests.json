@@ -23,20 +23,7 @@
       "request": {
         "method": "GET",
         "header": [],
-        "url": {
-          "raw": "https://try.vikunja.io/api/v1/info",
-          "protocol": "https",
-          "host": [
-            "try",
-            "vikunja",
-            "io"
-          ],
-          "path": [
-            "api",
-            "v1",
-            "info"
-          ]
-        }
+        "url": "{{base_url}}/info"
       },
       "response": []
     },
@@ -56,22 +43,15 @@
       "request": {
         "method": "GET",
         "header": [],
-        "url": {
-          "raw": "https://try.vikunja.io/api/v1/projects",
-          "protocol": "https",
-          "host": [
-            "try",
-            "vikunja",
-            "io"
-          ],
-          "path": [
-            "api",
-            "v1",
-            "projects"
-          ]
-        }
+        "url": "{{base_url}}/projects"
       },
       "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3456/api/v1"
     }
   ]
 }

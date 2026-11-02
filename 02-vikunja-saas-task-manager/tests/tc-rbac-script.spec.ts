@@ -16,15 +16,16 @@ test.beforeAll(async () => {
     expect(login.status(), 'Owner API login').toBe(200);
     const headers = { Authorization: `Bearer ${(await login.json()).token}` };
 
-    const projects = await (await api.get(`${API}/projects`, { headers })).json();
+    // Search by title: the project list is paginated and other specs create many projects
+    const projects = await (await api.get(`${API}/projects?s=${encodeURIComponent(PROJECT_TITLE)}`, { headers })).json();
     const p = projects.find((x: any) => x.title === PROJECT_TITLE);
-    expect(p, `Project "${PROJECT_TITLE}" not found`).toBeTruthy();
+    expect(p, `Project "${PROJECT_TITLE}" not found. Run "npm run vikunja:seed" first.`).toBeTruthy();
     projectID = p.id;
 
     const shares = await (await api.get(`${API}/projects/${projectID}/users`, { headers })).json();
     expect(
       shares.some((u: any) => u.username === READ.user),
-      'User-Read is not shared yet. Run "npm run test:api" first.'
+      'User-Read is not shared yet. Run "npm run vikunja:seed" first.'
     ).toBeTruthy();
     await api.dispose();
   });

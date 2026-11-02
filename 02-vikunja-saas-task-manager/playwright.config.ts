@@ -9,13 +9,15 @@ import path from 'path';
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
 /** RBAC specs run in their own projects, without the saved login from auth.setup.ts */
-const RBAC = /tc-rbac-.*\.spec\.ts/;
+const RBAC = /(tc-rbac-.*|rbac-tests-.*)\.spec\.ts/;
 
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
   testDir: './tests',
+  /* Delete the projects, tasks, teams and labels the specs created. Set KEEP_TEST_DATA=1 to keep them for debugging. */
+  globalTeardown: require.resolve('./scripts/cleanup-test-data.js'),
   /* Run tests in files in parallel */
   fullyParallel: false,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
@@ -28,7 +30,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     /* Base URL to use in actions like `await page.goto('/login')`. */
-    baseURL: process.env.VIKUNJA_URL ?? 'https://try.vikunja.io',
+    baseURL: process.env.VIKUNJA_URL ?? 'http://localhost:3456',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',

@@ -4,7 +4,7 @@ import * as helper from './helpers/task-helpers';
 const authFile = 'playwright/.auth/user.json';
 
 setup('setup', async ({ page }) => {
-    await page.goto('https://try.vikunja.io/login');
+    await page.goto('/login');
 
     // Fill credentials
     await helper.login(page);

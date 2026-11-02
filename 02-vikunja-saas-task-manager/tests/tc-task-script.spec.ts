@@ -185,7 +185,8 @@ test.describe('Vikunja Tasks', () => {
   /// TC-TASK-10: Test markdown rendering in task descriptions. The task description should render markdown correctly, including bold, italic, and links.
   /// Due to limitations in Playwright's text input handling, the test uses a workaround to paste a markdown link from the clipboard to ensure proper rendering. The test verifies that the markdown is rendered correctly in the task description.
   test('TC-TASK-10: test markdown rendering in task descriptions', async ({ page, browserName }) => {
-    // test.fixme(browserName === 'webkit', 'This test is currently failing due to the word link being deleted when the enter button is pressed in the link input.');
+    // Known defect BUG-001: expected to fail on WebKit. If it starts passing there, the bug is fixed and Playwright reports it.
+    test.fail(browserName === 'webkit', 'BUG-001: the word "Link" is deleted when Enter is pressed in the link URL input');
     
     await helper.beginTest(page);
 

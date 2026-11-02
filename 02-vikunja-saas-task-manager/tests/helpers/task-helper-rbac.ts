@@ -6,7 +6,7 @@ export async function loginOwner(page: Page) {
     const username = process.env.OWNER_USER!;
     const password = process.env.OWNER_PASS!;
 
-    await page.goto('https://try.vikunja.io/login');
+    await page.goto('/login');
     await page.getByRole('textbox', { name: 'Username Or Email Address' }).fill(username);
     await page.getByRole('textbox', { name: 'Password' }).fill(password);
     await page.getByRole('checkbox', { name: 'Stay logged in' }).click();
@@ -17,7 +17,7 @@ export async function loginRead(page: Page){
     const username = process.env.READ_USER!;
     const password = process.env.READ_PASS!;
 
-    await page.goto('https://try.vikunja.io/login');
+    await page.goto('/login');
     await page.getByRole('textbox', { name: 'Username Or Email Address' }).fill(username);
     await page.getByRole('textbox', { name: 'Password' }).fill(password);
     await page.getByRole('checkbox', { name: 'Stay logged in' }).click();
@@ -26,7 +26,7 @@ export async function loginRead(page: Page){
 
 /// Go to the base URL and ensure the page is ready for testing
 export async function beginTest(page: Page) {
-    const baseURL = 'https://try.vikunja.io';
+    const baseURL = '/';
 
     await page.goto(baseURL);
     await expect(page.getByRole('textbox', { name: 'Add a task…' })).toBeVisible();

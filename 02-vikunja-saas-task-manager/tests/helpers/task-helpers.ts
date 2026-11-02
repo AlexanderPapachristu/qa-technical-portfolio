@@ -1,10 +1,12 @@
 import { Page, expect } from '@playwright/test';
 
-export async function login(page: Page) {
-    const username = 'test_account';
-    const password = 'UserPassword';
+// Credentials come from .env (loaded in playwright.config.ts). Never hardcode them here.
 
-    await page.goto('https://try.vikunja.io/login');
+export async function login(page: Page) {
+    const username = process.env.TASK_USER!;
+    const password = process.env.TASK_PASS!;
+
+    await page.goto('/login');
     await page.getByRole('textbox', { name: 'Username Or Email Address' }).fill(username);
     await page.getByRole('textbox', { name: 'Password' }).fill(password);
     await page.getByRole('checkbox', { name: 'Stay logged in' }).click();
@@ -13,7 +15,7 @@ export async function login(page: Page) {
 
 /// Go to the base URL and ensure the page is ready for testing
 export async function beginTest(page: Page) {
-    const baseURL = 'https://try.vikunja.io';
+    const baseURL = '/';
 
     await page.goto(baseURL);
     await expect(page.getByRole('textbox', { name: 'Add a task…' })).toBeVisible();

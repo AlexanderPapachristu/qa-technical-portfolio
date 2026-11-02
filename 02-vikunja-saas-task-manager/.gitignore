@@ -9,3 +9,6 @@ node_modules/
 
 # Local credentials (see .env.example)
 .env
+
+# Newman (npm run test:api)
+/newman-report/
